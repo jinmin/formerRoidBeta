@@ -29,7 +29,7 @@ public class PeriodService
 		SQLiteDatabase db = sqlHelper.getReadableDatabase();
 		List<StoredPeriod> list = new ArrayList<StoredPeriod>();
 		try {
-			Cursor cursor = db.rawQuery("select _id," + SQLHelper.STORE_PERIOD_TABLE.TITLE + "," + SQLHelper.STORE_PERIOD_TABLE.START_TIME + ", " + SQLHelper.STORE_PERIOD_TABLE.FINISH_TIME + ", " + SQLHelper.STORE_PERIOD_TABLE.WEEKS + ", " + SQLHelper.STORE_PERIOD_TABLE.RING_MODE + ", " + ", " + SQLHelper.STORE_PERIOD_TABLE.RING_MODE_OPTION + " from " + SQLHelper.STORED_PERIOD_TB, null);
+			Cursor cursor = db.rawQuery("select _id," + SQLHelper.STORE_PERIOD_TABLE.TITLE + "," + SQLHelper.STORE_PERIOD_TABLE.START_TIME + ", " + SQLHelper.STORE_PERIOD_TABLE.FINISH_TIME + ", " + SQLHelper.STORE_PERIOD_TABLE.WEEKS + ", " + SQLHelper.STORE_PERIOD_TABLE.RING_MODE + ", " + SQLHelper.STORE_PERIOD_TABLE.RING_MODE_OPTION + " from " + SQLHelper.STORED_PERIOD_TB, null);
 			while (cursor.moveToNext()) {
 				list.add(new StoredPeriod(cursor.getInt(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getInt(5), cursor.getInt(6)));
 			}
@@ -63,19 +63,20 @@ public class PeriodService
 		return result;
 	}
 
-	public boolean insertPeriod(StoredPeriod storePeriod)
+	public boolean insertPeriod(StoredPeriod storedPeriod)
 	{
-		if (storePeriod == null) {
+		if (storedPeriod == null) {
 			return false;
 		}
 		boolean isSuccessed = false;
 		SQLiteDatabase db = sqlHelper.getWritableDatabase();
 		long result = 0l;
 		try {
-			result = db.insert(SQLHelper.STORED_PERIOD_TB, null, storePeriod.toContentValues());
+
+			result = db.insert(SQLHelper.STORED_PERIOD_TB, null, storedPeriod.toContentValues());
 			if (result > 0) {
 				Log.d("@@@", "result ==> " + result);
-				storePeriod.setId(result);
+				storedPeriod.setId(result);
 				isSuccessed = true;
 			}
 		}

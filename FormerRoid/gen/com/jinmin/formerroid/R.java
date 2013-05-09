@@ -35,7 +35,7 @@ public final class R {
         public static final int mode_2_blue=0x7f020008;
     }
     public static final class id {
-        public static final int chartLayout=0x7f08001e;
+        public static final int chartLayout=0x7f080020;
         public static final int checkboxLayout=0x7f080015;
         public static final int contactName=0x7f080000;
         public static final int contactNumber=0x7f080001;
@@ -44,12 +44,14 @@ public final class R {
         public static final int fri=0x7f08001b;
         public static final int img_ring_mode=0x7f08000b;
         public static final int insertBtn=0x7f080007;
+        public static final int insertPeriodBtn=0x7f08001f;
         public static final int listView=0x7f080008;
-        public static final int menu_settings=0x7f08001f;
+        public static final int menu_settings=0x7f080021;
         public static final int mon=0x7f080017;
         public static final int pager=0x7f08000d;
         public static final int periodOnOffSwitch=0x7f080011;
         public static final int periodTitle=0x7f080012;
+        public static final int period_ring_mode=0x7f08001e;
         public static final int ring_mode=0x7f080002;
         public static final int ring_mode_0=0x7f080003;
         public static final int ring_mode_1=0x7f080004;

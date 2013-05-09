@@ -97,32 +97,32 @@ public class ContactPageFragment extends Fragment
 	{
 		super.onActivityCreated(savedInstanceState);
 
-		if (savedInstanceState != null) {
-			if (savedInstanceState.containsKey("storedContactService")) {
-				storedContactService = (ContactService)savedInstanceState.get("storedContactService");
-			}
-			if (savedInstanceState.containsKey("arrayAdapter")) {
-				((ListView)getActivity().findViewById(R.id.listView)).setAdapter((ContactListArrayAdapter)savedInstanceState.get("arrayAdapter"));
-			}
+		// if (savedInstanceState != null) {
+		// if (savedInstanceState.containsKey(AppConstants.SAVE_INSTANCE_STATE_CONTACT_SERVICE_KEY)) {
+		// storedContactService = (ContactService)savedInstanceState.get(AppConstants.SAVE_INSTANCE_STATE_CONTACT_SERVICE_KEY);
+		// }
+		// if (savedInstanceState.containsKey("arrayAdapter")) {
+		// ((ListView)getActivity().findViewById(R.id.listView)).setAdapter((ContactListArrayAdapter)savedInstanceState.get("arrayAdapter"));
+		// }
+		// }
+		// else {
+		if (storedContactService == null) {
+			storedContactService = new ContactService(getActivity().getApplicationContext());
 		}
-		else {
-			if (storedContactService == null) {
-				storedContactService = new ContactService(getActivity().getApplicationContext());
-			}
 
-			loadingListViewHandler = new Handler();
-			loadingListViewHandler.post(new Runnable()
+		loadingListViewHandler = new Handler();
+		loadingListViewHandler.post(new Runnable()
+		{
+			@Override
+			public void run()
 			{
-				@Override
-				public void run()
-				{
-					// setProgressDialogLoading();
-					// progressDialogLoading.show();
-					displayListView();
-				}
-			});
+				// setProgressDialogLoading();
+				// progressDialogLoading.show();
+				displayListView();
+			}
+		});
 
-		}
+		// }
 
 		refreshListView();
 	}
