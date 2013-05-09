@@ -66,9 +66,13 @@ public class PeriodPageFragment extends Fragment
 		{
 
 			if (hasFocus) {
-				SET_TIME_ID = ((EditText)v).getId();
-				int[] textTimes = getTimes(((EditText)v).getText().toString());
-				createTimePickerDialog(textTimes[0], textTimes[1]).show();
+
+				if (timePickerDialog != null && !timePickerDialog.isShowing()) {
+					SET_TIME_ID = ((EditText)v).getId();
+					int[] textTimes = getTimes(((EditText)v).getText().toString());
+					createTimePickerDialog(textTimes[0], textTimes[1]).show();
+				}
+
 			}
 		}
 	};
@@ -78,9 +82,11 @@ public class PeriodPageFragment extends Fragment
 		@Override
 		public void onClick(View v)
 		{
-			SET_TIME_ID = ((EditText)v).getId();
-			int[] textTimes = getTimes(((EditText)v).getText().toString());
-			createTimePickerDialog(textTimes[0], textTimes[1]).show();
+			if (timePickerDialog != null && !timePickerDialog.isShowing()) {
+				SET_TIME_ID = ((EditText)v).getId();
+				int[] textTimes = getTimes(((EditText)v).getText().toString());
+				createTimePickerDialog(textTimes[0], textTimes[1]).show();
+			}
 		}
 	};
 
@@ -132,6 +138,7 @@ public class PeriodPageFragment extends Fragment
 
 		View view = inflater.inflate(R.layout.period_layout, container, false);
 
+		timePickerDialog = createTimePickerDialog(0, 0);
 		periodTitle = (EditText)view.findViewById(R.id.periodTitle);
 		startTimeEdTxt = (EditText)view.findViewById(R.id.startPeriod);
 		finishTimeEdTxt = (EditText)view.findViewById(R.id.finishPeriod);
@@ -162,7 +169,7 @@ public class PeriodPageFragment extends Fragment
 				String finishTimeTotal = String.valueOf((Integer.parseInt(finishTimeArr[0]) * 60) + Integer.parseInt(finishTimeArr[1]));
 
 				checked = checked.substring(0, checked.length() - 1);
-				StoredPeriod storedPeriod = new StoredPeriod(periodTitle.getText().toString(), startTimeTotal, finishTimeTotal, checked, ring_mode, 0);
+				StoredPeriod storedPeriod = new StoredPeriod(periodTitle.getText().toString(), startTimeTotal, finishTimeTotal, checked, ring_mode, ring_mode_option);
 				periodService.insertPeriod(storedPeriod);
 
 				loadingListViewHandler = new Handler();
@@ -285,6 +292,8 @@ public class PeriodPageFragment extends Fragment
 	{
 	}
 
+	TimePickerDialog timePickerDialog = null;
+
 	private TimePickerDialog createTimePickerDialog(int hour, int minute)
 	{
 		// if (timePickerDialog == null) {
@@ -398,24 +407,6 @@ public class PeriodPageFragment extends Fragment
 			r.setStroke(BasicStroke.SOLID);
 			renderer.addSeriesRenderer(r);
 		}
-
-		// sereise
-		// double[] values = new double[]{ 12, 14, 11, 10, 19 };
-
-		// render
-		// int[] colors = new int[]{ Color.BLUE, Color.GREEN, Color.RED, Color.BLACK, Color.CYAN };
-		// DefaultRenderer renderer = new DefaultRenderer();
-		// renderer.setLabelsTextSize(45);
-		// renderer.setLegendTextSize(25);
-		// renderer.setMargins(new int[]{ 20, 30, 15, 0 });
-		// for (int color: colors) {
-		// SimpleSeriesRenderer r = new SimpleSeriesRenderer();
-		// r.setColor(color);
-		// r.setChartValuesTextSize(25);
-		// r.setGradientEnabled(true);
-		// r.setStroke(BasicStroke.SOLID);
-		// renderer.addSeriesRenderer(r);
-		// }
 
 		renderer.setAxesColor(Color.BLACK);
 		renderer.setZoomButtonsVisible(false);

@@ -85,13 +85,14 @@ public final class R {
     public static final class string {
         public static final int app_name=0x7f050000;
         public static final int cancel=0x7f050009;
-        public static final int hint_title=0x7f05001c;
-        public static final int info_img=0x7f05001d;
-        public static final int info_off_period=0x7f05001e;
-        public static final int info_on_period=0x7f05001f;
+        public static final int hint_title=0x7f05001d;
+        public static final int info_img=0x7f05001e;
+        public static final int info_off_period=0x7f05001f;
+        public static final int info_on_period=0x7f050020;
         public static final int insert_btn=0x7f050008;
         public static final int label_finish_time=0x7f05001b;
         public static final int label_friday=0x7f050018;
+        public static final int label_from=0x7f05001c;
         public static final int label_monday=0x7f050014;
         public static final int label_saturday=0x7f050019;
         public static final int label_start_time=0x7f05001a;

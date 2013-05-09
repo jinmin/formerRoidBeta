@@ -27,8 +27,10 @@
     <string name="label_saturday">토</string>
     <string name="label_start_time">시작시간</string>
     <string name="label_finish_time">종료시간</string>
+    <string name="label_from"> ~ </string>
     <string name="hint_title">제목</string>
     <string name="info_img">Mode Image</string>
     <string name="info_off_period">시간 설정 : Off</string>
     <string name="info_on_period">시간 설정 : On </string>
+    
 </resources>

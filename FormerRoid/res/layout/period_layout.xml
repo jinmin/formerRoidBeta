@@ -31,22 +31,22 @@
     	<EditText android:id="@+id/startPeriod"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
-	        android:textSize="25sp"
+	        android:textSize="22sp"
 	        android:hint="@string/label_start_time"
-	        android:editable="false"
+	        android:inputType="none"
         />
     	<TextView 
     	    android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
-	        android:text=" ~ "
+	        android:text="@string/label_from"
 	        android:textSize="25sp"
 	        />
     	<EditText android:id="@+id/finishPeriod"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:hint="@string/label_finish_time"
-	        android:textSize="25sp"
-	        android:editable="false"
+	        android:textSize="22sp"
+	        android:inputType="none"
         />    
     </LinearLayout>
     <LinearLayout 
@@ -155,7 +155,6 @@
 	        android:background="@drawable/button_selector"
 	        android:textColor="@color/btn_label_color"
 	        />
-	
 	<LinearLayout android:id="@+id/chartLayout"
 	    android:layout_width="match_parent"
         android:layout_height="match_parent"
