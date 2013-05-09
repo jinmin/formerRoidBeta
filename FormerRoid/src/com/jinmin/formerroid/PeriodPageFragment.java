@@ -364,7 +364,7 @@ public class PeriodPageFragment extends Fragment
 
 		CategorySeries series = new CategorySeries("!1");
 
-		int[] colors = new int[]{ Color.BLUE, Color.GREEN, Color.RED, Color.BLACK, Color.CYAN };
+		int[] colors = new int[]{ Color.BLUE, Color.GREEN, Color.RED, Color.BLACK, Color.CYAN, Color.BLUE, Color.GREEN, Color.RED, Color.BLACK, Color.CYAN };
 
 		DefaultRenderer renderer = new DefaultRenderer();
 		renderer.setLabelsTextSize(45);
@@ -426,7 +426,8 @@ public class PeriodPageFragment extends Fragment
 			{
 			}
 		});
-
+		chartView.refreshDrawableState();
+		chartView.repaint();
 		// mChartView.setBackgroundColor(Color.WHITE);
 		incomePiechartLayout.addView(chartView, new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
 
