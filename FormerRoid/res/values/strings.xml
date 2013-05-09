@@ -1,5 +1,4 @@
 <resources>
-
     <string name="app_name">FormerRoid</string>
     <string name="title_section1">번호</string>
     <string name="title_section2">시간</string>
@@ -11,6 +10,7 @@
     <string name="insert_btn">등록</string>
     <string name="cancel">취소</string>
     <string name="search_btn">주소록에서 찾기</string>
+	<string name="period_config_onoff">시간 설정 On/Off</string>
     <string name="txt_name">이름</string>
     <string name="txt_tel">전화번호</string>
     <string name="txt_ring_mode">모드</string>
@@ -18,8 +18,6 @@
     <string name="txt_ring_mode_none">무음</string>
     <string name="txt_ring_mode_ring">벨</string>
     <string name="txt_ring_mode_vibrator">진동</string>
-    <string name="info_img">Mode Image</string>
-    <string name="period_config_onoff">시간 설정 On/Off</string>
     <string name="label_sunday">일</string>
     <string name="label_monday">월</string>
     <string name="label_tuesday">화</string>
@@ -27,4 +25,10 @@
     <string name="label_thursday">목</string>
     <string name="label_friday">금</string>
     <string name="label_saturday">토</string>
+    <string name="label_start_time">시작시간</string>
+    <string name="label_finish_time">종료시간</string>
+    <string name="hint_title">제목</string>
+    <string name="info_img">Mode Image</string>
+    <string name="info_off_period">시간 설정 : Off</string>
+    <string name="info_on_period">시간 설정 : On </string>
 </resources>

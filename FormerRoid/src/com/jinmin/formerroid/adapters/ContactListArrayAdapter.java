@@ -14,13 +14,13 @@ import android.widget.TextView;
 import com.jinmin.formerroid.R;
 import com.jinmin.formerroid.model.StoredContact;
 
-public class StoredContactListArrayAdapter extends ArrayAdapter<StoredContact>
+public class ContactListArrayAdapter extends ArrayAdapter<StoredContact>
 {
 
 	private Context context;
 	List<StoredContact> storedContactList;
 
-	public StoredContactListArrayAdapter(Context context, int textViewResourceId, List<StoredContact> list)
+	public ContactListArrayAdapter(Context context, int textViewResourceId, List<StoredContact> list)
 	{
 		super(context, textViewResourceId, list);
 		this.context = context;
@@ -34,7 +34,7 @@ public class StoredContactListArrayAdapter extends ArrayAdapter<StoredContact>
 		View view = convertView;
 		if (view == null) {
 			LayoutInflater inflater = (LayoutInflater)this.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-			view = inflater.inflate(R.layout.listview_row, parent, false);
+			view = inflater.inflate(R.layout.contact_listview_row, parent, false);
 		}
 		StoredContact item = getItem(position);
 

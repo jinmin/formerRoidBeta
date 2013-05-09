@@ -13,12 +13,12 @@ import com.jinmin.formerroid.helpers.SQLHelper;
 import com.jinmin.formerroid.model.StoredContact;
 import com.jinmin.formerroid.model.StoredPeriod;
 
-public class StoredPeriodService
+public class PeriodService
 {
 
 	private SQLHelper sqlHelper;
 
-	public StoredPeriodService(Context _context)
+	public PeriodService(Context _context)
 	{
 		sqlHelper = new SQLHelper(_context);
 	}

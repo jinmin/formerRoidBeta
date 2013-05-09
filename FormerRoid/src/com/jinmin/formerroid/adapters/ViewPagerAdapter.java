@@ -6,7 +6,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.util.Log;
 
-import com.jinmin.formerroid.ListPageFragment;
+import com.jinmin.formerroid.ContactPageFragment;
 import com.jinmin.formerroid.R;
 import com.jinmin.formerroid.PeriodPageFragment;
 
@@ -34,7 +34,7 @@ public class ViewPagerAdapter extends FragmentPagerAdapter
 		switch (position) {
 			case 0:
 				if (fragmentArr[position] == null) {
-					fragmentArr[position] = ListPageFragment.newInstance(_context, position);
+					fragmentArr[position] = ContactPageFragment.newInstance(_context, position);
 				}
 				f = fragmentArr[position];
 				break;

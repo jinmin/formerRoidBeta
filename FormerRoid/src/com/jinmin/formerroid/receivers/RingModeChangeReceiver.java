@@ -1,4 +1,4 @@
-package com.jinmin.formerroid.listeners;
+package com.jinmin.formerroid.receivers;
 
 import java.util.List;
 
@@ -10,11 +10,11 @@ import android.os.Bundle;
 import android.telephony.TelephonyManager;
 import android.widget.Toast;
 
-import com.jinmin.formerroid.dao.StoredContactService;
+import com.jinmin.formerroid.dao.ContactService;
 import com.jinmin.formerroid.helpers.SQLHelper;
 import com.jinmin.formerroid.model.StoredContact;
 
-public class CallStatusListener extends BroadcastReceiver
+public class RingModeChangeReceiver extends BroadcastReceiver
 {
 	private AudioManager mAudioManager;
 
@@ -25,7 +25,7 @@ public class CallStatusListener extends BroadcastReceiver
 	static int currVolumnVal = 0;
 	static int currRingMode = -1;
 
-	StoredContactService storedContactService;
+	ContactService storedContactService;
 
 	@Override
 	public void onReceive(Context context, Intent received)
@@ -34,7 +34,7 @@ public class CallStatusListener extends BroadcastReceiver
 		Bundle bundle = received.getExtras();
 
 		if (storedContactService == null) {
-			storedContactService = new StoredContactService(context);
+			storedContactService = new ContactService(context);
 		}
 
 		if (mAudioManager == null) {

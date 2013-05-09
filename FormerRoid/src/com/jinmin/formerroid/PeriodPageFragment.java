@@ -10,7 +10,10 @@ import org.achartengine.renderer.DefaultRenderer;
 import org.achartengine.renderer.SimpleSeriesRenderer;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
@@ -19,10 +22,15 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
+import android.widget.Switch;
+import android.widget.Toast;
 
-import com.jinmin.formerroid.dao.StoredContactService;
+import com.jinmin.formerroid.dao.ContactService;
 import com.jinmin.formerroid.model.StoredContact;
 
 public class PeriodPageFragment extends Fragment
@@ -30,13 +38,13 @@ public class PeriodPageFragment extends Fragment
 
 	public static final String ARG_SECTION_NUMBER = "section_number";
 	public static final int CONTACT_REQUEST_CODE = 99;
-
 	public static final String POSITION = "position";
-	private Context _context;
-	StoredContactService storedContactService;
 
+	private Context _context;
 	private Handler loadingListViewHandler;
 
+	ContactService storedContactService;
+	SharedPreferences pref;
 	List<StoredContact> list = null;
 
 	public PeriodPageFragment(Context _context)
@@ -66,8 +74,10 @@ public class PeriodPageFragment extends Fragment
 	{
 		super.onCreate(savedInstanceState);
 		if (storedContactService == null) {
-			storedContactService = new StoredContactService(getActivity().getApplicationContext());
+			storedContactService = new ContactService(getActivity().getApplicationContext());
 		}
+
+		pref = ((FormerRoidActivity)getActivity()).getPref();
 	}
 
 	@Override
@@ -78,12 +88,28 @@ public class PeriodPageFragment extends Fragment
 		if (container == null)
 			return null;
 
-		View view = inflater.inflate(R.layout.periodview_layout, container, false);
+		View view = inflater.inflate(R.layout.period_layout, container, false);
 
 		// TimePicker startTimePicker = (TimePicker)view.findViewById(R.id.startTimePicker);
 		// TimePicker finishTimePicker = (TimePicker)view.findViewById(R.id.finishTimePicker);
 		// startTimePicker.setIs24HourView(true);
 		// finishTimePicker.setIs24HourView(true);
+
+		// add switch event
+		Switch onOffSwitch = (Switch)view.findViewById(R.id.periodOnOffSwitch);
+		onOffSwitch.setChecked(pref.getBoolean(AppConstants.PERIOD_ON_OFF_KEY, false));
+		onOffSwitch.setOnCheckedChangeListener(new OnCheckedChangeListener()
+		{
+
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked)
+			{
+				SharedPreferences.Editor sharedPrefEditor = pref.edit();
+				sharedPrefEditor.putBoolean(AppConstants.PERIOD_ON_OFF_KEY, isChecked);
+				sharedPrefEditor.commit();
+				Toast.makeText(_context, getResources().getString(isChecked ? R.string.info_on_period : R.string.info_off_period), Toast.LENGTH_SHORT).show();
+			}
+		});
 
 		return view;
 	}
@@ -95,12 +121,12 @@ public class PeriodPageFragment extends Fragment
 
 		if (savedInstanceState != null) {
 			if (savedInstanceState.containsKey("storedContactService")) {
-				storedContactService = (StoredContactService)savedInstanceState.get("storedContactService");
+				storedContactService = (ContactService)savedInstanceState.get("storedContactService");
 			}
 		}
 		else {
 			if (storedContactService == null) {
-				storedContactService = new StoredContactService(getActivity().getApplicationContext());
+				storedContactService = new ContactService(getActivity().getApplicationContext());
 			}
 
 			loadingListViewHandler = new Handler();
@@ -156,8 +182,44 @@ public class PeriodPageFragment extends Fragment
 	public List<StoredContact> getListViewData()
 	{
 		if (storedContactService == null)
-			storedContactService = new StoredContactService(_context);
+			storedContactService = new ContactService(_context);
 		return storedContactService.getStoredContactList();
+	}
+
+	private void clearRegistFormDialog(View innerView)
+	{
+	}
+
+	private AlertDialog createPeriodAddDialog()
+	{
+
+		final View innerView = getLayoutInflater(getArguments()).inflate(R.layout.period_add_layout, null);
+
+		AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(_context);// new AlertDialog.Builder(_context);
+		// CustomAlertDialogBuilder dialogBuilder = new CustomAlertDialogBuilder(_context);// new AlertDialog.Builder(_context);
+		dialogBuilder.setView(innerView);
+		dialogBuilder.setTitle(R.string.insert_btn);
+		dialogBuilder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener()
+		{
+			@Override
+			public void onClick(DialogInterface dialog, int which)
+			{
+				clearRegistFormDialog(innerView);
+				dialog.dismiss();// 닫기
+			}
+		});
+		dialogBuilder.setPositiveButton(R.string.insert_btn, new DialogInterface.OnClickListener()
+		{
+			@Override
+			public void onClick(DialogInterface dialog, int which)
+			{
+				EditText periodTitle = (EditText)innerView.findViewById(R.id.periodTitle);
+
+				String title = periodTitle.getText().toString();
+			}
+		});
+
+		return dialogBuilder.create();
 	}
 
 	public void displayView()

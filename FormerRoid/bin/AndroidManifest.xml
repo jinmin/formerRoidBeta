@@ -22,12 +22,11 @@
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name="org.achartengine.GraphicalActivity" /> 
-        <receiver android:name="com.jinmin.formerroid.listeners.CallStatusListener">
+        <receiver android:name="com.jinmin.formerroid.receivers.RingModeChangeReceiver">
            <intent-filter>
               <action android:name="android.intent.action.BOOT_COMPLETED" /> 
               <action android:name="android.intent.action.PHONE_STATE"/>

@@ -7,15 +7,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class MapLayerFragment extends Fragment {
+public class MapPageFragment extends Fragment {
 
    public static final String ARG_SECTION_NUMBER = "section_number";
 
-   public MapLayerFragment() {
+   public MapPageFragment() {
    }
 
    public static Fragment newInstance(Context context) {
-      MapLayerFragment f = new MapLayerFragment();
+      MapPageFragment f = new MapPageFragment();
       return f;
    }
 

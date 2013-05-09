@@ -6,6 +6,7 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.os.Handler;
@@ -28,12 +29,16 @@ public class FormerRoidActivity extends FragmentActivity implements ActionBar.Ta
 
 	int currentPosition = 0;
 
+	private SharedPreferences pref;
+
 	@Override
 	public void onCreate(Bundle savedInstanceState)
 	{
 
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.former_roid_layout);
+
+		pref = getSharedPreferences(AppConstants.PREFERENCE_KEY, MODE_PRIVATE);
 
 		viewPagerAdapter = new ViewPagerAdapter(this, getSupportFragmentManager());
 
@@ -67,19 +72,43 @@ public class FormerRoidActivity extends FragmentActivity implements ActionBar.Ta
 	}
 
 	@Override
+	protected void onResume()
+	{
+		super.onResume();
+	}
+
+	@Override
+	protected void onPause()
+	{
+		super.onPause();
+	}
+
+	@Override
+	protected void onSaveInstanceState(Bundle outState)
+	{
+		super.onSaveInstanceState(outState);
+	}
+
+	@Override
+	protected void onDestroy()
+	{
+		super.onDestroy();
+	}
+
+	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent intent)
 	{
 		super.onActivityResult(requestCode, resultCode, intent);
 
 		switch (requestCode) {
-			case ListPageFragment.CONTACT_REQUEST_CODE:
+			case ContactPageFragment.CONTACT_REQUEST_CODE:
 				if (resultCode == Activity.RESULT_OK) {
 
 					Log.d("LIST_PAGE IDX ==>", String.valueOf(currentPosition));
 					Cursor cursor = getContentResolver().query(intent.getData(), new String[]{ ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME, ContactsContract.CommonDataKinds.Phone.NUMBER }, null, null, null);
 					cursor.moveToFirst();
 					if (cursor != null) {
-						ListPageFragment fragment = (ListPageFragment)viewPagerAdapter.getItem(currentPosition);
+						ContactPageFragment fragment = (ContactPageFragment)viewPagerAdapter.getItem(currentPosition);
 						Log.d("CONTACT NAME ==>", cursor.getString(0));
 						Log.d("CONTACT Phone Number ==>", cursor.getString(1));
 						String name = cursor.getString(0);
@@ -159,4 +188,15 @@ public class FormerRoidActivity extends FragmentActivity implements ActionBar.Ta
 			}
 		}
 	};
+
+	public SharedPreferences getPref()
+	{
+		return pref;
+	}
+
+	public void setPref(SharedPreferences pref)
+	{
+		this.pref = pref;
+	}
+
 }

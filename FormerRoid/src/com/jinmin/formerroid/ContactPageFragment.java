@@ -27,11 +27,11 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
-import com.jinmin.formerroid.adapters.StoredContactListArrayAdapter;
-import com.jinmin.formerroid.dao.StoredContactService;
+import com.jinmin.formerroid.adapters.ContactListArrayAdapter;
+import com.jinmin.formerroid.dao.ContactService;
 import com.jinmin.formerroid.model.StoredContact;
 
-public class ListPageFragment extends Fragment
+public class ContactPageFragment extends Fragment
 {
 
 	public static final String ARG_SECTION_NUMBER = "section_number";
@@ -41,22 +41,22 @@ public class ListPageFragment extends Fragment
 
 	public static final String POSITION = "position";
 	private Context _context;
-	private StoredContactListArrayAdapter arrayAdapter;
-	StoredContactService storedContactService;
+	private ContactListArrayAdapter arrayAdapter;
+	ContactService storedContactService;
 	private Dialog regContactFormDialog;
 
 	static ProgressDialog progressDialogLoading;
 
 	private Handler loadingListViewHandler;
 
-	public ListPageFragment(Context _context)
+	public ContactPageFragment(Context _context)
 	{
 		this._context = _context;
 	}
 
 	public static Fragment newInstance(Context _context, int position)
 	{
-		Fragment f = new ListPageFragment(_context);
+		Fragment f = new ContactPageFragment(_context);
 		f.setRetainInstance(true);
 		Bundle bundle = new Bundle();
 		bundle.putInt(POSITION, position);
@@ -76,7 +76,7 @@ public class ListPageFragment extends Fragment
 	{
 		super.onCreate(savedInstanceState);
 		if (storedContactService == null) {
-			storedContactService = new StoredContactService(getActivity().getApplicationContext());
+			storedContactService = new ContactService(getActivity().getApplicationContext());
 		}
 	}
 
@@ -88,7 +88,7 @@ public class ListPageFragment extends Fragment
 		if (container == null)
 			return null;
 
-		View view = inflater.inflate(R.layout.listview_layout, container, false);
+		View view = inflater.inflate(R.layout.contact_layout, container, false);
 		return view;
 	}
 
@@ -99,15 +99,15 @@ public class ListPageFragment extends Fragment
 
 		if (savedInstanceState != null) {
 			if (savedInstanceState.containsKey("storedContactService")) {
-				storedContactService = (StoredContactService)savedInstanceState.get("storedContactService");
+				storedContactService = (ContactService)savedInstanceState.get("storedContactService");
 			}
 			if (savedInstanceState.containsKey("arrayAdapter")) {
-				((ListView)getActivity().findViewById(R.id.listView)).setAdapter((StoredContactListArrayAdapter)savedInstanceState.get("arrayAdapter"));
+				((ListView)getActivity().findViewById(R.id.listView)).setAdapter((ContactListArrayAdapter)savedInstanceState.get("arrayAdapter"));
 			}
 		}
 		else {
 			if (storedContactService == null) {
-				storedContactService = new StoredContactService(getActivity().getApplicationContext());
+				storedContactService = new ContactService(getActivity().getApplicationContext());
 			}
 
 			loadingListViewHandler = new Handler();
@@ -165,7 +165,7 @@ public class ListPageFragment extends Fragment
 	public List<StoredContact> getListViewData()
 	{
 		if (storedContactService == null)
-			storedContactService = new StoredContactService(_context);
+			storedContactService = new ContactService(_context);
 		return storedContactService.getStoredContactList();
 	}
 
@@ -175,7 +175,7 @@ public class ListPageFragment extends Fragment
 	{
 		list = storedContactService.getStoredContactList();
 		// set arrayAdapter
-		arrayAdapter = new StoredContactListArrayAdapter(_context, R.layout.listview_row, list);
+		arrayAdapter = new ContactListArrayAdapter(_context, R.layout.contact_listview_row, list);
 		ListView listView = (ListView)getActivity().findViewById(R.id.listView);
 		listView.setAdapter(arrayAdapter);
 		listView.setTextFilterEnabled(true);
@@ -256,7 +256,7 @@ public class ListPageFragment extends Fragment
 	private AlertDialog createRegistDialog()
 	{
 
-		final View innerView = getLayoutInflater(getArguments()).inflate(R.layout.regist_form_layout, null);
+		final View innerView = getLayoutInflater(getArguments()).inflate(R.layout.contact_add_layout, null);
 
 		AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(_context);// new AlertDialog.Builder(_context);
 		// CustomAlertDialogBuilder dialogBuilder = new CustomAlertDialogBuilder(_context);// new AlertDialog.Builder(_context);

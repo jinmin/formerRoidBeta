@@ -12,12 +12,12 @@ import com.jinmin.formerroid.handler.JmExceptionHandler;
 import com.jinmin.formerroid.helpers.SQLHelper;
 import com.jinmin.formerroid.model.StoredContact;
 
-public class StoredContactService
+public class ContactService
 {
 
 	private SQLHelper sqlHelper;
 
-	public StoredContactService(Context _context)
+	public ContactService(Context _context)
 	{
 		sqlHelper = new SQLHelper(_context);
 	}
