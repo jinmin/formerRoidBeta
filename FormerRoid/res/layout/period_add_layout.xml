@@ -7,23 +7,87 @@
     android:background="@color/bg_color"
     >
 
+   <EditText android:id="@+id/periodTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/hint_title"
+        android:textSize="25sp"
+        android:maxLines="1"
+        android:maxLength="20"
+        />
     <LinearLayout 
     	android:layout_width="match_parent"
     	android:layout_height="wrap_content"
-    	>    
-    	
-	    <TimePicker
-	        android:id="@+id/startTimePicker"
+    	android:orientation="horizontal"
+    	android:gravity="center_horizontal"
+    	>
+    	<EditText android:id="@+id/startPeriod"
 	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content" 
+	        android:layout_height="wrap_content"
+	        android:textSize="22sp"
+	        android:hint="@string/label_start_time"
+	        android:inputType="none"
+        />
+    	<TextView 
+    	    android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/label_from"
+	        android:textSize="25sp"
 	        />
-	    <TimePicker
-	        android:id="@+id/finishTimePicker"
+    	<EditText android:id="@+id/finishPeriod"
 	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content" 
-	        />
+	        android:layout_height="wrap_content"
+	        android:hint="@string/label_finish_time"
+	        android:textSize="22sp"
+	        android:inputType="none"
+        />    
     </LinearLayout>
-
+    <LinearLayout 
+        android:id="@+id/checkboxLayout"
+    	android:layout_width="match_parent"
+    	android:layout_height="wrap_content"
+    	android:orientation="horizontal"
+    	android:gravity="center_horizontal"
+    	>
+    	<CheckBox android:id="@+id/sun"
+    	    android:layout_width="wrap_content"
+    		android:layout_height="wrap_content"
+    	    android:text="@string/label_sunday"
+    	    />
+    	<CheckBox android:id="@+id/mon"
+    	    android:layout_width="wrap_content"
+    		android:layout_height="wrap_content"
+    	    android:text="@string/label_monday"/>
+    	<CheckBox android:id="@+id/tue"
+    	    android:layout_width="wrap_content"
+    		android:layout_height="wrap_content"
+    	    android:text="@string/label_tuesday"/>
+    	<CheckBox android:id="@+id/wed"
+    	    android:layout_width="wrap_content"
+    		android:layout_height="wrap_content"
+    	    android:text="@string/label_wednesday"/>
+    	<CheckBox android:id="@+id/thu"
+    	    android:layout_width="wrap_content"
+    		android:layout_height="wrap_content"
+    	    android:text="@string/label_thursday"/>
+    	<CheckBox android:id="@+id/fri"
+    	    android:layout_width="wrap_content"
+    		android:layout_height="wrap_content"
+    	    android:text="@string/label_friday"/>
+    	<CheckBox android:id="@+id/sat"
+    	    android:layout_width="wrap_content"
+    		android:layout_height="wrap_content"
+    	    android:text="@string/label_saturday"/>
+   	</LinearLayout>    
+ 
+    <LinearLayout 
+        android:id="@+id/timeLayout"
+    	android:layout_width="match_parent"
+    	android:layout_height="wrap_content"
+    	android:orientation="horizontal"
+    	android:gravity="center_vertical"
+    	>    
+    </LinearLayout>
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -34,37 +98,11 @@
         android:layout_marginTop="20dp"
         android:layout_marginBottom="10dp"
         >
-
-        <EditText
-            android:id="@+id/contactName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:ems="15"
-            android:hint="@string/txt_name"
-            android:inputType="text"
-            android:maxLength="15"
-            android:textSize="25sp" 
-            />
-        
-        <EditText
-            android:id="@+id/contactNumber"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/contactName"
-            android:ems="15"
-            android:hint="@string/txt_tel"
-            android:inputType="phone"
-            android:maxLength="20"
-            android:textSize="25sp" 
-            />
-        
         <RadioGroup
-	            android:id="@+id/ring_mode"
+	            android:id="@+id/period_ring_mode"
 	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
 	            android:orientation="horizontal" 
-	            android:layout_below="@id/contactNumber"
 	            >
         
 	            <RadioButton
@@ -91,15 +129,11 @@
 	    </RadioGroup>
 
 	</RelativeLayout>
-	<Button
-		    android:id="@+id/searchBtn"
-		    android:layout_width="fill_parent"
-		    android:layout_height="wrap_content"
-		    android:text="@string/search_btn"
-		    android:textSize="20sp" 
-		    android:layout_marginLeft="20dp"
-	        android:layout_marginRight="20dp"
-	        android:layout_marginTop="5dp"
-	        android:layout_marginBottom="10dp"
-		    />
+	<Button android:id="@+id/insertPeriodBtn"
+	        android:layout_width="match_parent"
+	    	android:layout_height="wrap_content"
+	        android:text="@string/insert_btn"
+	        android:background="@drawable/button_selector"
+	        android:textColor="@color/btn_label_color"
+	        />
 </LinearLayout>

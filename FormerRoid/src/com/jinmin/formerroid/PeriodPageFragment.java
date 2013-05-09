@@ -414,10 +414,10 @@ public class PeriodPageFragment extends Fragment
 		renderer.setPanEnabled(false);
 		renderer.setChartTitleTextSize(40);
 		renderer.setLabelsColor(Color.BLUE);
-		renderer.setScale(1.25f);
+		renderer.setScale(1f);
+		renderer.setLegendTextSize(50f);
 		chartView = ChartFactory.getPieChartView(_context, series, renderer);
-		chartView.setFitsSystemWindows(true);
-
+		chartView.setFitsSystemWindows(false);
 		chartView.setOnClickListener(new OnClickListener()
 		{
 

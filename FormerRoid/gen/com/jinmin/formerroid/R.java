@@ -35,40 +35,38 @@ public final class R {
         public static final int mode_2_blue=0x7f020008;
     }
     public static final class id {
-        public static final int chartLayout=0x7f080020;
-        public static final int checkboxLayout=0x7f080015;
+        public static final int chartLayout=0x7f08001e;
+        public static final int checkboxLayout=0x7f080012;
         public static final int contactName=0x7f080000;
         public static final int contactNumber=0x7f080001;
-        public static final int finishPeriod=0x7f080014;
-        public static final int finishTimePicker=0x7f080010;
-        public static final int fri=0x7f08001b;
+        public static final int finishPeriod=0x7f080011;
+        public static final int fri=0x7f080018;
         public static final int img_ring_mode=0x7f08000b;
         public static final int insertBtn=0x7f080007;
-        public static final int insertPeriodBtn=0x7f08001f;
+        public static final int insertPeriodBtn=0x7f08001c;
         public static final int listView=0x7f080008;
-        public static final int menu_settings=0x7f080021;
-        public static final int mon=0x7f080017;
+        public static final int menu_settings=0x7f08001f;
+        public static final int mon=0x7f080014;
         public static final int pager=0x7f08000d;
-        public static final int periodOnOffSwitch=0x7f080011;
-        public static final int periodTitle=0x7f080012;
-        public static final int period_ring_mode=0x7f08001e;
+        public static final int periodOnOffSwitch=0x7f08001d;
+        public static final int periodTitle=0x7f08000f;
+        public static final int period_ring_mode=0x7f08001b;
         public static final int ring_mode=0x7f080002;
         public static final int ring_mode_0=0x7f080003;
         public static final int ring_mode_1=0x7f080004;
         public static final int ring_mode_2=0x7f080005;
-        public static final int sat=0x7f08001c;
+        public static final int sat=0x7f080019;
         public static final int searchBtn=0x7f080006;
-        public static final int startPeriod=0x7f080013;
-        public static final int startTimePicker=0x7f08000f;
-        public static final int sun=0x7f080016;
+        public static final int startPeriod=0x7f080010;
+        public static final int sun=0x7f080013;
         public static final int textView1=0x7f08000e;
-        public static final int thu=0x7f08001a;
-        public static final int timeLayout=0x7f08001d;
-        public static final int tue=0x7f080018;
+        public static final int thu=0x7f080017;
+        public static final int timeLayout=0x7f08001a;
+        public static final int tue=0x7f080015;
         public static final int txtv_name=0x7f080009;
         public static final int txtv_ring_mode=0x7f08000c;
         public static final int txtv_tel=0x7f08000a;
-        public static final int wed=0x7f080019;
+        public static final int wed=0x7f080016;
     }
     public static final class layout {
         public static final int contact_add_layout=0x7f030000;
